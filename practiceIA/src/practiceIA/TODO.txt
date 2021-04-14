@@ -1,0 +1,20 @@
+fix quantity available zero issues
+new panel put msg under title like in edit page
+add data persistance
+add back button capabilities
+add home screen that shows activity
+fix validations
+re-factor
+add a add to order button
+add department capabilities
+check borrowPanel return date provided is in future
+add damages
+
+1. Record how many of each item is available at any particular time. 
+2. Change status when equipment is borrowed and returned. 
+3. Data is persistent across restarts. 
+4. There should be an equipment search function. 
+5. Keep a record of teachers / users. 
+6. New teachers can be added and old teachers can be deleted. 
+7. Notification when equipment is overdue. 
+8. Login system to store teacher's preferences.
