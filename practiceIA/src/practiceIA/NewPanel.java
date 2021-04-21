@@ -34,17 +34,19 @@ public class NewPanel extends JPanel {
 //	private JComboBox damagedComboBox;
 //	private JLabel damagedLabel;
 	private JButton btnBack;
+	private JButton btnAddNew;
+	private JButton btnAddDepartment;
 	private JLabel quantityLabel;
 	private JSpinner quantitySpinner;
-	private DepartmentComboBoxModel model;
+	private DepartmentComboBoxModel departmentModel;
 	private ItemTableModel tableModel;
 	private ColorScheme colorScheme;
 	private UiController uiController;
 	ArrayList<DocumentListener> listeners = new ArrayList<>();
 
 
-	NewPanel(DepartmentComboBoxModel model, ItemTableModel tableModel, ColorScheme colorScheme, UiController uiController) {
-		this.model = model;
+	NewPanel(DepartmentComboBoxModel departmentModel, ItemTableModel tableModel, ColorScheme colorScheme, UiController uiController) {
+		this.departmentModel = departmentModel;
 		this.tableModel = tableModel;
 		this.colorScheme = colorScheme;
 		this.uiController = uiController;
@@ -114,8 +116,8 @@ public class NewPanel extends JPanel {
 		departmentComboBox = new JComboBox();
 		departmentComboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		departmentComboBox.setBounds(170, 217, 475, 43);
-		departmentComboBox.setModel(model);
-		departmentComboBox.setSelectedIndex(model.getSize() > 0 ? 0 : -1);
+		departmentComboBox.setModel(departmentModel);
+		departmentComboBox.setSelectedIndex(departmentModel.getSize() > 0 ? 0 : -1);
 		add(departmentComboBox);
 		
 		quantityLabel = new JLabel("Quantity");
@@ -128,8 +130,18 @@ public class NewPanel extends JPanel {
 //		quantitySpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(5)));
 		quantitySpinner.setBounds(170, 269, 475, 43);
 		add(quantitySpinner);
+		
+		btnAddDepartment = new JButton("Add Department");
+		btnAddDepartment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				uiController.goToAddDepartment();
+			}
+		});
+		btnAddDepartment.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAddDepartment.setBounds(10, 377, 140, 49);
+		add(btnAddDepartment);
 
-		JButton btnAddNew = new JButton("Add");
+		btnAddNew = new JButton("Add");
 		btnAddNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean valid = validateModel();
@@ -202,7 +214,7 @@ public class NewPanel extends JPanel {
 	private String validateQuantity() {
 		if((Integer)quantitySpinner.getValue() < 1) {
 			quantitySpinner.setBackground(colorScheme.getFail());
-			return "The item quantity must be at least 1";
+			return "The item quantity must be at least 1 to add it";
 		}
 		quantitySpinner.setBackground(colorScheme.getSuccess());
 		return null;

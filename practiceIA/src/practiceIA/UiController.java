@@ -1,7 +1,9 @@
 package practiceIA;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class UiController {
@@ -13,6 +15,8 @@ public class UiController {
 	private EditPanel editPanel;
 	private EditReturnPanel editReturnPanel;
 	private SearchPanel searchPanel;
+	private BorrowedItemPanel borrowedItemPanel;
+	private AddDepartmentPanel addDepartmentPanel;
 	private ArrayList<Integer> panelSelectStack = new ArrayList<>(); 
 	
 	UiController(JTabbedPane tabbedPane) {
@@ -20,7 +24,7 @@ public class UiController {
 		this.tabbedPane = tabbedPane;
 	}
 	
-	public void setPanels(HomePanel homePanel, ViewPanel viewPanel, BorrowPanel borrowPanel, NewPanel newPanel, EditPanel editPanel, EditReturnPanel editReturnPanel, SearchPanel searchPanel) {
+	public void setPanels(HomePanel homePanel, ViewPanel viewPanel, BorrowPanel borrowPanel, NewPanel newPanel, EditPanel editPanel, EditReturnPanel editReturnPanel, SearchPanel searchPanel, BorrowedItemPanel borrowedItemPanel,  AddDepartmentPanel addDepartmentPanel) {
 		this.homePanel = homePanel;
 		this.viewPanel = viewPanel;
 		this.borrowPanel = borrowPanel;
@@ -28,6 +32,8 @@ public class UiController {
 		this.editPanel = editPanel;
 		this.editReturnPanel = editReturnPanel;
 		this.searchPanel = searchPanel;
+		this.borrowedItemPanel = borrowedItemPanel;
+		this.addDepartmentPanel = addDepartmentPanel;
 	}
 	
 	public void setSelected(int index) {
@@ -51,12 +57,21 @@ public class UiController {
 	
 	public void back() {
 		this.popStack();
-		tabbedPane.setSelectedIndex(panelSelectStack.get(panelSelectStack.size() - 1));
+		int index = panelSelectStack.get(panelSelectStack.size() - 1);
+		tabbedPane.setSelectedIndex(index);
+		if(index == 0) homePanel.refreshBorrowButton();
 	}
 	
 	public void goToHome() {
 		setSelected(0);
 	}
+	
+//	public void goToHome(String msg, Color color) {
+//		homePanel.setMsg(msg);
+//		homePanel.setMsgColor(color);
+//		setSelected(0);
+//	}
+	
 	
 	public void goToBorrow(Item item) {
 		borrowPanel.setItem(item);
@@ -89,6 +104,13 @@ public class UiController {
 		this.setSelected(1);
 	}
 	
+	public void goToBorrowedItems() {
+		borrowedItemPanel.refresh();
+		this.setSelected(7);
+	}
 	
+	public void goToAddDepartment() {
+		this.setSelected(8);
+	}
 	
 }

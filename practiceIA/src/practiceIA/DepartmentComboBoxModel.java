@@ -7,7 +7,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 public class DepartmentComboBoxModel implements ComboBoxModel<String>{
-	private String[] presetDepartments = new String[] {"Chemistry", "Biology", "Computer Science", "Physics"};
+	private String[] presetDepartments = new String[] {"Art", "Biology","Buisness",  "Chemistry", "Computer Science", "Economics", "Physical Education", "Physics", "Maths", "Geography", "History"};
 //	"Chemistry", "Biology", "Computer Science", "Physics"
 	
 	private ArrayList<String> departments = new ArrayList<>();
@@ -20,7 +20,9 @@ public class DepartmentComboBoxModel implements ComboBoxModel<String>{
 	}
 	
 	public void addDepartment(String department) {
-		departments.add(department);
+		if(!departments.contains(department)) {
+			departments.add(department);
+		}
 	}
 	
 	@Override
@@ -52,6 +54,5 @@ public class DepartmentComboBoxModel implements ComboBoxModel<String>{
 	public void setSelectedItem(Object arg0) {
 		selectedItem = arg0;
 	}
-	
 	
 }

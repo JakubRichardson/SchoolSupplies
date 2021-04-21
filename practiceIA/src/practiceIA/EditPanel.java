@@ -29,17 +29,19 @@ public class EditPanel extends JPanel {
 	private JTextArea descriptionTextArea;
 	private JLabel departmentLabel;
 	private JComboBox departmentComboBox;
-	private DepartmentComboBoxModel departmentModel = new DepartmentComboBoxModel();
+	private DepartmentComboBoxModel departmentModel;
 //	private JLabel damagedEditLabel;
 //	private JComboBox damagedEditComboBox;
 	private JLabel quantityAvailableLabel;
 	private JSpinner quantityAvailableSpinner;
 	private JButton btnSubmitEdit;
 	private JButton btnBackEdit;
+	private JButton btnAddDepartment;
 	private UiController uiController;
 	
-	EditPanel(ColorScheme colorScheme, UiController uiController) {
+	EditPanel(ColorScheme colorScheme, DepartmentComboBoxModel departmentModel, UiController uiController) {
 		this.colorScheme = colorScheme;
+		this.departmentModel = departmentModel;
 		this.uiController = uiController;
 		
 		setLayout(null);
@@ -109,6 +111,16 @@ public class EditPanel extends JPanel {
 //		quantityAvailableSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(5)));
 		quantityAvailableSpinner.setBounds(170, 269, 475, 43);
 		add(quantityAvailableSpinner);
+		
+		btnAddDepartment = new JButton("Add Department");
+		btnAddDepartment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				uiController.goToAddDepartment();
+			}
+		});
+		btnAddDepartment.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAddDepartment.setBounds(10, 377, 140, 49);
+		add(btnAddDepartment);
 		
 		btnBackEdit = new JButton("Back");
 		btnBackEdit.addActionListener(new ActionListener() {
@@ -218,12 +230,12 @@ public class EditPanel extends JPanel {
 	private boolean showAndValidateMessagesEdit(ArrayList<String> msgs) {
 		for (String msg : msgs) {
 			if(msg != null) {
-				setMsgColorEdit(colorScheme.getFail());
+				setMsgColor(colorScheme.getFail());
 				setMsg(msg);
 				return false;
 			}
     	}
-		setMsgColorEdit(colorScheme.getSuccess());
+		setMsgColor(colorScheme.getSuccess());
 		setMsg("Looks good!");
 		return true;
 	}
@@ -245,7 +257,7 @@ public class EditPanel extends JPanel {
 		msgLabel.setText(msg);
 	}
 	
-	public void setMsgColorEdit(Color color) {
+	public void setMsgColor(Color color) {
 		msgLabel.setForeground(color);
 	}
 	

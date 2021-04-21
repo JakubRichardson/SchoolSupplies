@@ -55,7 +55,6 @@ public class SearchPanel extends JPanel {
 					return;
 				}
 				ArrayList<Item> found = tableModel.search(searchTerm);
-				System.out.println(found);
 				searchModel.setFound(found);
 				setMsgSearch(found.size());
 			}

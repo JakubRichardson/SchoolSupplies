@@ -1,0 +1,90 @@
+[
+    {
+        "name": "Dell laptop",
+        "description": "Laptop",
+        "department": "Computer Science",
+        "quantityAvailable": 10,
+        "borrowed": [
+            {
+                "user": "John Montey",
+                "quantity": 2,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            },
+            {
+                "user": "Bob the builder",
+                "quantity": 2,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            }
+        ]
+    },
+    {
+        "name": "Flathead Screwdriver",
+        "description": "Flathead Screwdriver",
+        "department": "Art",
+        "quantityAvailable": 15,
+        "borrowed": [
+            {
+                "user": "Jill Jackson",
+                "quantity": 3,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            },
+            {
+                "user": "Corey Taylor",
+                "quantity": 2,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            }
+        ]
+    },
+    {
+        "name": "Green Paint",
+        "description": "Green acrylic paint",
+        "department": "Art",
+        "quantityAvailable": 2,
+        "borrowed": [
+            {
+                "user": "Carl Tompson",
+                "quantity": 1,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            },
+            {
+                "user": "Candy man",
+                "quantity": 2,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            }
+        ]
+    },
+    {
+        "name": "Micrometer",
+        "description": "Micrometer",
+        "department": "Physics",
+        "quantityAvailable": 0,
+        "borrowed": [
+            {
+                "user": "Johnny english",
+                "quantity": 20,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            },
+            {
+                "user": "Tom scott",
+                "quantity": 2,
+                "day": "12",
+                "month": "12",
+                "year": "2020"
+            }
+        ]
+    }
+]
