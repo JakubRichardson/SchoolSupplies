@@ -36,7 +36,7 @@ public class ViewPanel extends JPanel {
 	private JButton returnItemButton;
 	private JScrollPane scrollPaneBorrowed;
 	private JTable borrowedItemTable;
-	private BorrowedItemTableModel borrowedByTableModel = new BorrowedItemTableModel();
+	private BorrowedObjectTableModel borrowedByTableModel = new BorrowedObjectTableModel();
 	private JLabel quantityAvailableLabel;
 	private JLabel quantityAvailableValueLabel;
 	private BorrowObject selectedReturn;
@@ -181,6 +181,7 @@ public class ViewPanel extends JPanel {
 				selectedReturn = borrowedByTableModel.getItem(row);
 				returnItem(row);
 				uiController.popStack();
+				uiController.refreshBorrowedItems();
 				uiController.goToView(selectedItem);
 				System.out.println(selectedItem);
 			}

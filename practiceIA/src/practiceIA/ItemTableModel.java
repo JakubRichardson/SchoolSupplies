@@ -1,25 +1,9 @@
 package practiceIA;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.table.AbstractTableModel;
 
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-
 public class ItemTableModel extends	AbstractTableModel {
-	private Item[] presetItems = new Item[] {
-			new Item("200ml Beaker", "A 200 ml clear pyrex beaker", "Chemistry", 10,  new BorrowObject[] {new BorrowObject("Bob", 2, "12", "12", "2020"), new BorrowObject("Bob", 2, "12", "12", "2020"), new BorrowObject("Bob", 2, "12", "12", "2020"), new BorrowObject("Bob", 2, "12", "12", "2020"), new BorrowObject("Bob", 2, "12", "12", "2020")}),
-			new Item("Mercury Thermometer", "Glass Mercury Thermometer", "Physics", 15,  new BorrowObject("Jill", 3, "12", "12", "2020")),
-			new Item("Oscilloscope", "Large black oscilloscope", "Physics", 2,  new BorrowObject("John", 1, "12", "12", "2020")),
-			new Item("Test item", "test", "Physics", 0)
-	};
-	
 	private ArrayList<Item> inventory = new ArrayList<>();
 	
 //	ItemTableModel() {

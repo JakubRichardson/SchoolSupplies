@@ -7,7 +7,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 public class DepartmentComboBoxModel implements ComboBoxModel<String>{
-	private String[] presetDepartments = new String[] {"Art", "Biology","Buisness",  "Chemistry", "Computer Science", "Economics", "Physical Education", "Physics", "Maths", "Geography", "History"};
+	private String[] presetDepartments = new String[] {"Art", "Biology","Buisness", "Chemistry", "Computer Science", "Economics", "Physics", "Maths"};
 //	"Chemistry", "Biology", "Computer Science", "Physics"
 	
 	private ArrayList<String> departments = new ArrayList<>();

@@ -5,19 +5,21 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class BorrowedItemTableModel extends	AbstractTableModel{
-	private ArrayList<BorrowObject> borrowed  = new ArrayList<>();
+	private ArrayList<BorrowedItem> borrowed  = new ArrayList<>();
 	
-	public void setBorrowed(ArrayList<BorrowObject> borrowed) {
+	public void setBorrowed(ArrayList<BorrowedItem> borrowed) {
 		this.borrowed = borrowed;
 		fireTableDataChanged();
 	}
 	
 	public String getColumnName(int column) {
 		if(column == 0) {
+			return "Item Name";
+		} else if(column == 1) {
 			return "User";
-		}else if(column == 1) {
+		}else if(column == 2) {
 			return "Quantity";
-		} else if(column == 2) {
+		} else if(column == 3) {
 			return "Return date";
 		}
 		return null;
@@ -25,7 +27,7 @@ public class BorrowedItemTableModel extends	AbstractTableModel{
 	
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -33,19 +35,21 @@ public class BorrowedItemTableModel extends	AbstractTableModel{
 		return borrowed.size();
 	}
 	
-	BorrowObject getItem(int index) {
+	BorrowedItem getBorrowed(int index) {
 		return borrowed.get(index);
 	}
 
 	@Override
 	public Object getValueAt(int row, int column) {
-		BorrowObject object = borrowed.get(row);
+		BorrowedItem item = borrowed.get(row);
 		if(column == 0) {
-			return object.getUser();
-		} else if (column == 1) {
-			return object.getQuantity();
-		} else if(column == 2) {
-			return object.getDate();
+			return item.getItem().getName();
+		} else if(column == 1) {
+			return item.getBorrowedItem().getUser();
+		} else if (column == 2) {
+			return item.getBorrowedItem().getQuantity();
+		} else if(column == 3) {
+			return item.getBorrowedItem().getDate();
 		}
 		return null;
 	}

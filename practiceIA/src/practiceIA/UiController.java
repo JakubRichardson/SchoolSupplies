@@ -104,6 +104,10 @@ public class UiController {
 		this.setSelected(1);
 	}
 	
+	public void refreshBorrowedItems() {
+		borrowedItemPanel.refresh();
+	}
+	
 	public void goToBorrowedItems() {
 		borrowedItemPanel.refresh();
 		this.setSelected(7);

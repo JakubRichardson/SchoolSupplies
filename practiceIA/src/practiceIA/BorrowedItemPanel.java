@@ -20,11 +20,12 @@ public class BorrowedItemPanel extends JPanel {
 	private JTable table;
 	private JButton btnBack;
 	private JScrollPane scrollPane;
+	private JButton viewMoreButton;
 	private JButton editReturnButton;
 	private JButton returnItemButton;
 	private UiController uiController;
-	private BorrowObject selectedReturn;
-	private Map<Integer, Item> items = new HashMap<Integer, Item>();
+	private BorrowedItem borrowedItem;
+//	private Map<Integer, Item> items = new HashMap<Integer, Item>();
 	
 	BorrowedItemPanel(ItemTableModel tableModel, UiController uiController) {
 		this.tableModel = tableModel;
@@ -40,14 +41,29 @@ public class BorrowedItemPanel extends JPanel {
 		table.setModel(borrowedTableModel);
 		scrollPane.setViewportView(table);
 		
+		viewMoreButton = new JButton("View Item");
+		viewMoreButton.setEnabled(false);
+		viewMoreButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int row = table.getSelectedRow();
+				borrowedItem = borrowedTableModel.getBorrowed(row);
+				Item item = borrowedItem.getItem();
+				uiController.goToView(item);
+				System.out.println("Viewing: " + item);
+			}
+		});
+		viewMoreButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		viewMoreButton.setBounds(526, 172, 145, 56);
+		add(viewMoreButton);
+		
 		editReturnButton = new JButton("Edit Return");
 		editReturnButton.setEnabled(false);
 		editReturnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
-				selectedReturn = borrowedTableModel.getItem(row);
-				uiController.goToEditReturn(items.get(row), selectedReturn);
-				System.out.println(items.get(row));
+				borrowedItem = borrowedTableModel.getBorrowed(row);
+				uiController.goToEditReturn(borrowedItem.getItem(), borrowedItem.getBorrowedItem());
+				System.out.println(borrowedItem.getItem());
 			}
 		});
 		editReturnButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -59,9 +75,9 @@ public class BorrowedItemPanel extends JPanel {
 		returnItemButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
-				selectedReturn = borrowedTableModel.getItem(row);
-				Item item = items.get(row);
-				returnItem(item, selectedReturn);
+				borrowedItem = borrowedTableModel.getBorrowed(row);
+				Item item = borrowedItem.getItem();
+				returnItem(item , borrowedItem.getBorrowedItem());
 				uiController.popStack();
 				uiController.goToView(item);
 				System.out.println(item);
@@ -87,9 +103,11 @@ public class BorrowedItemPanel extends JPanel {
 				int row = table.getSelectedRow();
 				
 				if(row >= 0 && !e.getValueIsAdjusting()) {
+					viewMoreButton.setEnabled(true);
 					editReturnButton.setEnabled(true);
 					returnItemButton.setEnabled(true);
 				} else if (row == -1) {
+					viewMoreButton.setEnabled(false);
 					editReturnButton.setEnabled(false);
 					returnItemButton.setEnabled(false);
 				}
@@ -98,16 +116,12 @@ public class BorrowedItemPanel extends JPanel {
 	}
 	
 	public void refresh() {
-		items = new HashMap<Integer, Item>();
 		ArrayList<Item> inventory = tableModel.getInventory();
-		ArrayList<BorrowObject> borrowed = new ArrayList<>();
-		int index = 0;
+		ArrayList<BorrowedItem> borrowed = new ArrayList<>();
 		for(Item item: inventory) {
 			ArrayList<BorrowObject> borrowedList = item.getBorrowed();
 			for(BorrowObject borrowedObject: borrowedList) {
-				borrowed.add(borrowedObject);
-				items.put(index, item);
-				index++;
+				borrowed.add(new BorrowedItem(item, borrowedObject));
 			}
 		}
 		borrowedTableModel.setBorrowed(borrowed);
