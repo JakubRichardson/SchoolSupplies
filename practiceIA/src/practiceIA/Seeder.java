@@ -26,7 +26,7 @@ public class Seeder {
 			new Item("Oscilloscope", "Large black oscilloscope", "Physics", 2,  new BorrowObject("Curious George", 1, "12", "12", "2020")),
 			new Item("Network switch", "4 port 10Gbit switch", "Computer Science", 1,  new BorrowObject("Curious George", 1, "12", "12", "2020")),
 			new Item("Sony Headphones", "Sony headphones", "Computer Science", 5,  new BorrowObject("Mr Potato", 1, "12", "12", "2020")),
-			new Item("Raspberry Pi 4 8gb", "Raspberry Pi 4 8gb", "Computer Science", 20,  new BorrowObject("Curious George", 1, "12", "12", "2020")),
+			new Item("Raspberry Pi 4 8GB", "Raspberry Pi 4 8GB", "Computer Science", 20,  new BorrowObject("Curious George", 1, "12", "12", "2020")),
 			new Item("Black BIC Pen", "Black BIC pen", "Art", 2,  new BorrowObject("Arthur", 1, "12", "12", "2020")),
 			new Item("Tuning fork", "Tuning fork", "Physics", 2,  new BorrowObject("DW", 1, "12", "12", "2020")),
 			new Item("Orange 20W valve Amplifier", "Orange 20W valve Amplifie", "Music", 2,  new BorrowObject("Emma", 1, "12", "12", "2020")),

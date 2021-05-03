@@ -181,7 +181,7 @@ public class EditReturnPanel extends JPanel {
 		}
 		titleLabel.setText(item.getName());
 		usernameTextField.setText(selectedReturn.getUser());
-		quantityBorrowedValueLabel.setText(Integer.toString(item.getQuantityAvailable()));
+		quantityBorrowedValueLabel.setText(Integer.toString(selectedReturn.getQuantity()));
 		dayTextField.setText(selectedReturn.getDay());
 		monthTextField.setText(selectedReturn.getMonth());
 		yearTextField.setText(selectedReturn.getYear());

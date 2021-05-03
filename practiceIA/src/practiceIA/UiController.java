@@ -57,7 +57,13 @@ public class UiController {
 	
 	public void back() {
 		this.popStack();
-		int index = panelSelectStack.get(panelSelectStack.size() - 1);
+		int stackLength = panelSelectStack.size();
+		if(stackLength <= 0) {
+			homePanel.refreshBorrowButton();
+			this.goToHome();
+			return;
+		}
+		int index = panelSelectStack.get(stackLength - 1);
 		tabbedPane.setSelectedIndex(index);
 		if(index == 0) homePanel.refreshBorrowButton();
 	}

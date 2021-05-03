@@ -89,6 +89,7 @@ public class UiMain2 {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 
 		EnhancedTabbedPane tabbedPane = new EnhancedTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setTabsVisible(false);
